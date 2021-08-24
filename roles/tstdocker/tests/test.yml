@@ -1,0 +1,7 @@
+---
+- hosts: pc129
+  remote_user: xorax
+  become: yes
+
+  roles:
+    - tstdocker

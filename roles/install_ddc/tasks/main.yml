@@ -1,0 +1,38 @@
+---
+# tasks file for docker_install
+- name: --=Install docker=--
+  apt:
+    name: docker-ce
+    update_cache: true
+    state: present
+
+- name: --=Check docker service=--
+  service:
+    name: docker
+    state: restarted
+    enabled: yes
+
+- name: --=Install Docker-compose=--
+  block:
+    - name: --=Get version docker-compose latest =--
+      uri:
+        url: https://api.github.com/repos/docker/compose/releases/latest
+        body_format: json
+      register: compose
+
+    - name: -=Download docker-compose=--
+      get_url:
+        url: "https://github.com/docker/compose/releases/download/{{ compose.json.tag_name }}/docker-compose-Linux-x86_64"
+        dest: /usr/local/bin/docker-compose
+        mode: 0755
+
+- name: --=Завершение инициализации=--
+  block:
+    - name: --=Add user to docker group=--
+      user:
+        name: "{{ansible_user}}"
+        groups: docker
+        append: yes
+
+    - debug:
+        msg: "That's all"

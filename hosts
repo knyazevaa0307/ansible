@@ -1,0 +1,9 @@
+[all_pc]
+192.168.0.128
+192.168.0.129
+
+[host_pc]
+xorax-a880  ansible_host=192.168.0.128  ansible_user=xorax  ansible_ssh_private_file=/home/xorax/.ssh/id_ed22519
+
+[pc129]
+tst-129  ansible_host=192.168.0.129  ansible_user=xorax  ansible_ssh_private_file=/home/xorax/.ssh/id_ed22519

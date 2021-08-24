@@ -1,0 +1,6 @@
+---
+# vars file for deploy
+services:
+  - nginx
+
+network_name: lan

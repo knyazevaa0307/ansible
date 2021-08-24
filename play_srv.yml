@@ -1,0 +1,10 @@
+---
+- name: Install
+  hosts: all_pc
+  become: yes
+
+  roles:
+    - deploy
+
+
+
